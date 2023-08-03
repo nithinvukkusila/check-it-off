@@ -1,0 +1,108 @@
+$border-radius: 8px;
+$mid-size-font: 20px;
+$primary-bg-color: #645dd7;
+$secondary-bg-color: #f2ff49;
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-size: 100%;
+  background-color: $primary-bg-color;
+}
+li {
+  list-style: none;
+}
+
+input {
+  outline: none;
+  border: none;
+}
+
+button {
+  outline: none;
+  border: none;
+  padding: 12px 15px;
+  border-radius: $border-radius;
+  cursor: pointer;
+  background-color: #f2ff49;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.App {
+  .container {
+    margin: auto;
+    width: 90%;
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      overflow: auto;
+
+      .input-field {
+        display: flex;
+        flex-direction: column;
+        align-content: stretch;
+        overflow: hidden;
+        input {
+          padding: 12px 20px;
+          font-size: 14px;
+          margin: 10px auto;
+          width: 90%;
+        }
+      }
+    }
+    .add-todo {
+      display: flex;
+    }
+    .todo-list {
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 30px auto;
+      .todo-item {
+        display: flex;
+        justify-content: space-between;
+        background-color: white;
+        border-radius: $border-radius;
+        padding: 15px 20px;
+        transform: translateY(0);
+        transition: opacity 0.3s, transform 0.3s;
+        .details {
+          display: flex;
+          align-items: center;   
+          gap: 12px;       
+          justify-content: space-between;
+          img {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+          }
+          .title {
+            font-weight: bold;
+            font-size: $mid-size-font;
+            text-transform: capitalize;
+          }
+          .description {
+            font-size: 14px;
+            margin-top: 5px;
+          }
+        }
+        .actions {
+          display: flex;
+          gap: 10px;
+          align-items: center;
+          img {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+    @media screen and (min-width: 786px) {
+      width: 50%;
+    }
+  }
+}
