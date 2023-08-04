@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import Button from "../components/Button";
 import Input from "../components/Input";
-import { useDispatch, useSelector } from "react-redux";
-import { addTask, removeTask } from "../store/actionCreators";
+import { useDispatch } from "react-redux";
+import { addTask } from "../store/actionCreators";
 import uuid4 from "uuid4";
 
 const AddTodo = ({ todo, editTodo, cancel }) => {
   const dispatch = useDispatch();
+  const [showInputGroup, setShowInputGroup] = useState(false);
   const [taskDetails, setTaskDetails] = useState({
     taskName: "",
     description: "",
@@ -30,12 +31,16 @@ const AddTodo = ({ todo, editTodo, cancel }) => {
         })
       );
     } else {
-      alert('Task Name should not be empty')
+      alert("Task Name should not be empty");
     }
     setTaskDetails({
       taskName: "",
       description: "",
     });
+  };
+
+  const handleInputgroup = () => {
+    setShowInputGroup((prevVal) => !prevVal);
   };
 
   const handleEdit = () => {
@@ -54,35 +59,44 @@ const AddTodo = ({ todo, editTodo, cancel }) => {
         taskName: todo.taskName,
         description: todo.description,
       });
+      setShowInputGroup(true)
     }
   }, [todo]);
 
   return (
     <>
-      <div className="input-group">
-        <Input
-          name="taskName"
-          value={taskDetails.taskName}
-          placeholder="Task Name"
-          onChange={handleInput}
-        />
-        <Input
-          name="description"
-          placeholder="Description"
-          value={taskDetails.description}
-          onChange={handleInput}
-        />
-      </div>
-
-      {editTodo && todo ? (
-        <div>
-          <Button text="update Todo" onClick={handleEdit} />
-          <Button text="Cancel" onClick={cancel} />
+      {showInputGroup ? (
+        <div className="input-group">
+          <div>
+            <Input
+              name="taskName"
+              value={taskDetails.taskName}
+              placeholder="Task Name"
+              onChange={handleInput}
+            />
+            <Input
+              name="description"
+              placeholder="Description"
+              value={taskDetails.description}
+              onChange={handleInput}
+            />
+          </div>
+          {editTodo && todo ? (
+            <div className="btn-group">
+              <Button text="update Todo" onClick={handleEdit} />
+              <Button text="Cancel" onClick={cancel} />
+            </div>
+          ) : (
+            <div className="btn-group">
+              <Button text="Add Todo" onClick={addTodo} />
+              <Button text="Cancel" onClick={handleInputgroup} />
+            </div>
+          )}{" "}
         </div>
       ) : (
-        <div className="add-todo">
-          <Button text="Add Todo" onClick={addTodo} />
-        </div>
+        <p onClick={handleInputgroup} className="add-task">
+          + Add task
+        </p>
       )}
     </>
   );

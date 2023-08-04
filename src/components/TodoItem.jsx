@@ -4,7 +4,7 @@ import checked from "../assets/checked.png";
 import unChecked from "../assets/notcompleted.png";
 import { useDispatch } from "react-redux";
 import { removeTask, toggleComplete, editTask } from "../store/actionCreators";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import AddTodo from "./AddTodo";
 
 const TodoItem = ({ todo }) => {
@@ -37,7 +37,8 @@ const TodoItem = ({ todo }) => {
         <>
           <div className="todo-item">
             <div className="details">
-              <img
+              <img 
+                alt="check and uncheck icons"
                 src={todo.completed ? checked : unChecked}
                 onClick={() => toggleTodo(todo.id)}
               />
@@ -54,8 +55,10 @@ const TodoItem = ({ todo }) => {
               </div>
             </div>
             <div className="actions">
-              <img src={binIcon} onClick={() => deleteTask(todo.id)} />
-              <img src={editIcon} onClick={() => handleEdit(todo.id)} />
+              <img alt="delete" src={binIcon} onClick={() => deleteTask(todo.id)} />
+              {!todo.completed ? (
+                <img alt="edit" src={editIcon} onClick={() => handleEdit(todo.id)} />
+              ) : null}
             </div>
           </div>
         </>

@@ -6,20 +6,7 @@ import {
 } from "./actionsTypes";
 
 const initialState = {
-  tasks: [
-    {
-      id: 1,
-      taskName: "task1",
-      description: "task details",
-      completed: false,
-    },
-    {
-      id: 2,
-      taskName: "task1",
-      description: "task details",
-      completed: false,
-    },
-  ],
+  tasks: [],
 };
 
 const todoReducer = (state = initialState, action) => {

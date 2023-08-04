@@ -1,7 +1,9 @@
 $border-radius: 8px;
-$mid-size-font: 20px;
-$primary-bg-color: #645dd7;
-$secondary-bg-color: #f2ff49;
+$mid-size-font: 12px;
+$small-size-font: 10px;
+$primary-bg-color: rgba($color: #080708, $alpha: 0.8);
+$secondary-bg-color: #e6e8e6;
+$btn-bg-color: #fdca40;
 * {
   margin: 0;
   padding: 0;
@@ -25,32 +27,66 @@ button {
   padding: 12px 15px;
   border-radius: $border-radius;
   cursor: pointer;
-  background-color: #f2ff49;
+  background-color: $btn-bg-color;
   font-weight: bold;
   text-transform: capitalize;
+  font-size: $small-size-font;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: grey; 
+  border-radius: 10px;
 }
 
 .App {
   .container {
-    margin: auto;
-    width: 90%;
+    margin: 50px auto;
+    width: 70%;
+    background-color: black;
+    padding: 20px;
+    border-radius: $border-radius;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    justify-content: center;
+    h3 {
+      color: $secondary-bg-color;
+    }
+    .add-task {
+      color: $secondary-bg-color;
+      margin: 20px 0;
+    }
     .input-group {
       display: flex;
       flex-direction: column;
       overflow: auto;
-
+      margin-top: 10px;
       .input-field {
         display: flex;
         flex-direction: column;
-        align-content: stretch;
         overflow: hidden;
         input {
-          padding: 12px 20px;
-          font-size: 14px;
-          margin: 10px auto;
-          width: 90%;
+          padding: 10px;
+          font-size: $small-size-font;
+          margin: 5px auto;
+          background-color: $secondary-bg-color;
+          width: 100%;
         }
       }
+    }
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
     }
     .add-todo {
       display: flex;
@@ -60,13 +96,17 @@ button {
       display: flex;
       flex-direction: column;
       gap: 10px;
-      margin: 30px auto;
+      margin-top: 20px ;
+      width: 100%;
+      flex: 1 1 auto;
+      overflow: auto;
+      border-radius: $border-radius;
       .todo-item {
         display: flex;
         justify-content: space-between;
-        background-color: white;
+        background-color: $secondary-bg-color;
         border-radius: $border-radius;
-        padding: 15px 20px;
+        padding: 10px 12px;
         transform: translateY(0);
         transition: opacity 0.3s, transform 0.3s;
         .details {
@@ -85,7 +125,7 @@ button {
             text-transform: capitalize;
           }
           .description {
-            font-size: 14px;
+            font-size: $small-size-font;
             margin-top: 5px;
           }
         }
@@ -99,10 +139,15 @@ button {
             cursor: pointer;
           }
         }
+        &:hover {
+          transform: scale(.97);
+          transition: all 0.5s;
+        }
       }
     }
     @media screen and (min-width: 786px) {
-      width: 50%;
+      width: 40%;
+      
     }
   }
 }
