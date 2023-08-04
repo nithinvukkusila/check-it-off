@@ -37,7 +37,7 @@ const TodoItem = ({ todo }) => {
         <>
           <div className="todo-item">
             <div className="details">
-              <img 
+              <img
                 alt="check and uncheck icons"
                 src={todo.completed ? checked : unChecked}
                 onClick={() => toggleTodo(todo.id)}
@@ -55,9 +55,17 @@ const TodoItem = ({ todo }) => {
               </div>
             </div>
             <div className="actions">
-              <img alt="delete" src={binIcon} onClick={() => deleteTask(todo.id)} />
+              <img
+                alt="delete"
+                src={binIcon}
+                onClick={() => deleteTask(todo.id)}
+              />
               {!todo.completed ? (
-                <img alt="edit" src={editIcon} onClick={() => handleEdit(todo.id)} />
+                <img
+                  alt="edit"
+                  src={editIcon}
+                  onClick={() => handleEdit(todo.id)}
+                />
               ) : null}
             </div>
           </div>
